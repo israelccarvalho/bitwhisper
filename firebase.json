@@ -16,8 +16,12 @@
     ],
     "rewrites": [
       {
-        "source": "/api/v1/hello",
-        "function": "helloWorld"
+        "source": "/api/v1/update_price_staging",
+        "function": "dexPriceStaging"
+      },
+      {
+        "source": "/api/v1/update_price_production",
+        "function": "dexPriceProd"
       }
     ]
   }

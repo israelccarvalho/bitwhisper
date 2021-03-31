@@ -19,7 +19,9 @@ const STAGING_CHANNEL = "-1001306367429";
 const PROD_CHANNEL = "-1001159768713";
 
 const getDexGuruPrice = async (url) => {
+  functions.logger.debug(url)
   const result = await dexClient.get(url);
+  functions.logger.debug(result.body)
   const dexData = JSON.parse(result.body);
   return dexData.priceUSD ?? "0.00";
 };
@@ -36,7 +38,7 @@ export const dexPriceStaging = functions.https.onRequest(
   async (request, response) => {
     const TELEGRAM_SEND_API =
       `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${STAGING_CHANNEL}&text=`;
-
+    functions.logger.debug(TELEGRAM_SEND_API)
     const dopPrice = await getDOPPrice();
     const wadPrice = await getWADPrice();
 
